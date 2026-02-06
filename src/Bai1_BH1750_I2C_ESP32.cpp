@@ -79,7 +79,7 @@ uint16_t bh1750_read_raw(void)
     i2c_cmd_link_delete(handle);
 
     if (ret != ESP_OK) {
-        Serial.printf("BH1750 READ ERR: %s\n", esp_err_to_name(ret));
+        Serial.printf("SENSOR ERROR: %s\n", esp_err_to_name(ret));
         return 0;
     }
 
@@ -96,7 +96,7 @@ void setup(void)
 {
     Serial.begin(115200);
     delay(100);
-    Serial.println("ESP32 + BH1750 (NO LIB)");
+    Serial.println("Start!!");
     
     i2c_init();
     bh1750_init();
@@ -105,7 +105,8 @@ void setup(void)
 void loop(void)
 {
     float lux = bh1750_read_lux();
-    Serial.printf("Light: %.2f lux\n", lux);
+    Serial.printf("Light: %.2f lux value\n", lux);
     delay(1000);
 }
+
 
