@@ -130,6 +130,6 @@ void loop()
         Serial.println("Loi checksum!");
     }
 
-    delay(2000); // DHT11 yêu cầu ≥2s
+    delay(2000); // DHT11 nên để >= 2s
 }
 
