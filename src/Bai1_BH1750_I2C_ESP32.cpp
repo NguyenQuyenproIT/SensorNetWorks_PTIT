@@ -2,18 +2,18 @@
 #include "driver/i2c.h"
 
 
-#define I2C_PORT        I2C_NUM_0
+#define I2C_PORT        I2C_NUM_0 (Bộ I2C0)
 #define I2C_SDA_PIN     21
 #define I2C_SCL_PIN     22
 #define I2C_FREQ_HZ     100000
 
-// 7-bit address (ADDR pin = GND)
+// 7-bit address (ADDR - GND)
 #define BH1750_ADDR     0x23
 
 // Commands (datasheet)
 #define BH1750_POWER_ON     0x01
 #define BH1750_RESET        0x07
-#define BH1750_CONT_HRES    0x10   // Continuous High Resolution Mode
+#define BH1750_CONT_HRES    0x10   // quét liên tục
 
 void i2c_init(void)
 {
@@ -38,9 +38,7 @@ esp_err_t bh1750_write_cmd(uint8_t cmd)
     i2c_master_write_byte(handle, cmd, true);
     i2c_master_stop(handle);
 
-    esp_err_t ret = i2c_master_cmd_begin(
-        I2C_PORT, handle, pdMS_TO_TICKS(100)
-    );
+    esp_err_t ret = i2c_master_cmd_begin(I2C_PORT, handle, pdMS_TO_TICKS(100));
 
     i2c_cmd_link_delete(handle);
     return ret;
@@ -98,9 +96,8 @@ void setup(void)
 {
     Serial.begin(115200);
     delay(100);
-
     Serial.println("ESP32 + BH1750 (NO LIB)");
-
+    
     i2c_init();
     bh1750_init();
 }
@@ -108,6 +105,7 @@ void setup(void)
 void loop(void)
 {
     float lux = bh1750_read_lux();
-    Serial.printf("Light: %.2f lx\n", lux);
+    Serial.printf("Light: %.2f lux\n", lux);
     delay(1000);
 }
+
