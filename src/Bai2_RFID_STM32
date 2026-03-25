@@ -96,7 +96,7 @@ void PIN_MODE_UART1(){
 		usart_init.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 			
 		
-		USART_Init(USART1, &usart_init); // configure to register: Baudrate, Word length, Parity, Stop bit, Flow control, Mode… but still not turn on USART.
+		USART_Init(USART1, &usart_init); // configure to register: Baudrate, Word length, Parity, Stop bit, Flow control, Modeâ€¦ but still not turn on USART.
 			
 		USART_ITConfig(USART1, USART_IT_RXNE, ENABLE); // enable ngat RXNE
 		USART_Cmd(USART1, ENABLE); // bat bo USART. -> complete	
@@ -113,7 +113,7 @@ int fputc(int ch, FILE *f) {
     return ch;
 }
 
-// cau hình spi
+// cau hÃ¬nh spi
 
 void SPI1_Init(void)
 {
@@ -257,7 +257,7 @@ uint8_t RC522_Transceive(uint8_t *sendData,
 
     RC522_WriteReg(CommandReg, PCD_TRANSCEIVE);
 
-    /* CH? b?t StartSend, KHÔNG phá BitFraming */
+    /* CH? b?t StartSend, KHÃ”NG phÃ¡ BitFraming */
     bitFraming = RC522_ReadReg(BitFramingReg);
     RC522_WriteReg(BitFramingReg, bitFraming | 0x80);
 
