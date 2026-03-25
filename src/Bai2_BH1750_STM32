@@ -50,7 +50,7 @@ void config_uart(){
 			usart_init.USART_Parity = USART_Parity_No;
 			usart_init.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 			
-			USART_Init(USART1, &usart_init); // configure to register: Baudrate, Word length, Parity, Stop bit, Flow control, ModeÖ but still not turn on USART.
+			USART_Init(USART1, &usart_init); // configure to register: Baudrate, Word length, Parity, Stop bit, Flow control, Mode‚Ä¶ but still not turn on USART.
 			USART_Cmd(USART1, ENABLE); // bat bo USART. -> complete
 }	
 	
@@ -79,10 +79,10 @@ void Config_I2C(){
 	
 		I2C_init.I2C_ClockSpeed = 100000; // Toc do xung clock SCL = 100kHz.
 		I2C_init.I2C_Mode = I2C_Mode_I2C;
-		I2C_init.I2C_DutyCycle = I2C_DutyCycle_2; // Nghia l‡ ti le xung clock = T_high / T_low = 2 (mac dinh cho 100kHz).
+		I2C_init.I2C_DutyCycle = I2C_DutyCycle_2; // Nghia l√† ti le xung clock = T_high / T_low = 2 (mac dinh cho 100kHz).
 		I2C_init.I2C_OwnAddress1 = 0x00; // stm32 is master, enough not care
-		I2C_init.I2C_Ack = I2C_Ack_Enable; // Nghia l‡ sau khi nhan 1 byte, STM32 se tra ACK cho slave -> b·o hieu "tÙi nhan roi, gui tiep di".
-		I2C_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit; // almost sensor (BH1750) deu d˘ng 7-bit address, nÍn chon 7bit.
+		I2C_init.I2C_Ack = I2C_Ack_Enable; // Nghia l√† sau khi nhan 1 byte, STM32 se tra ACK cho slave -> b√°o hieu "t√¥i nhan roi, gui tiep di".
+		I2C_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit; // almost sensor (BH1750) deu d√πng 7-bit address, n√™n chon 7bit.
 		I2C_Init(I2C1, &I2C_init);
 		
 		I2C_Cmd(I2C1, ENABLE);
@@ -100,7 +100,7 @@ void I2C_WriteByte(uint8_t address, uint8_t data){ // gui 1 byte du lieu toi thi
   I2C_GenerateSTART(I2C1, ENABLE); // tao tin hieu start
 
   while (!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT)); // doi den khi xac nhan START duoc tao thanh cong
-	// khi start duoc tao thanh cong, bit SB (start bit) duoc set (stm tro thanh master v‡ gui dia chi cho slave)
+	// khi start duoc tao thanh cong, bit SB (start bit) duoc set (stm tro thanh master v√† gui dia chi cho slave)
 	
   I2C_Send7bitAddress(I2C1, address, I2C_Direction_Transmitter); // gui dia chi + chon read/write
 	/*
